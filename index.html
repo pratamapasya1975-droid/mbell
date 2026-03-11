@@ -22,10 +22,6 @@
 </head>
 
 <body>
-    
-<audio id="bgm" loop>
-  <source src="https://files.catbox.moe/jui0tu.mp3" type="audio/mpeg">
-</audio>
 <div id="main">
 
 <div id="error">
@@ -218,6 +214,25 @@ document.addEventListener("click", () => {
   audio.volume = 0.35;
   audio.play().catch(()=>{});
 }, { once:true });
+</script>
+    <audio id="bgm" preload="auto" loop>
+    <source src="https://files.catbox.moe/jui0tu.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+window.addEventListener("load", function () {
+
+    const audio = document.getElementById("bgm");
+
+    // volume romantis
+    audio.volume = 0.35;
+
+    // browser butuh interaksi user
+    document.body.addEventListener("click", function () {
+        audio.play().catch(() => {});
+    }, { once:true });
+
+});
 </script>
 </body>
 </html>
