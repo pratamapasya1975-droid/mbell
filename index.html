@@ -106,17 +106,40 @@ html,body{
     /* ========= CLICK + TOUCH FIX ========= */
     canvas.on("click touchstart",function(e){
 
-        var evt = e.originalEvent.touches
-            ? e.originalEvent.touches[0]
-            : e;
+let currentScale = 1;
 
-        var offset = canvas.offset();
-        var x = evt.pageX-offset.left;
-        var y = evt.pageY-offset.top;
+function fitScreen() {
 
-        if(seed.hover(x,y)){
-            hold=0;
-            canvas.off("click touchstart");
+    currentScale = Math.min(
+        window.innerWidth / 1100,
+        window.innerHeight / 680
+    );
+
+    document.getElementById("wrap").style.transform =
+        "translate(-50%, -50%) scale(" + currentScale + ")";
+}
+
+fitScreen();
+window.addEventListener("resize", fitScreen);
+
+
+canvas.on("click touchstart", function(e){
+
+    var evt = e.originalEvent.touches
+        ? e.originalEvent.touches[0]
+        : e;
+
+    var rect = canvas[0].getBoundingClientRect();
+
+    // posisi klik REAL setelah scale
+    var x = (evt.clientX - rect.left) / currentScale;
+    var y = (evt.clientY - rect.top) / currentScale;
+
+    if(seed.hover(x, y)){
+        hold = 0;
+        canvas.off("click touchstart");
+    }
+});
         }
     });
 
