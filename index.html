@@ -42,7 +42,7 @@
                     </div>
 				</div>
               </div>
-                <canvas id="canvas"></canvas>
+                <canvas id="canvas" width="1100" height="680"></canvas>
             </div>
             
         </div>
@@ -194,6 +194,22 @@ var textAnimate = eval(Jscex.compile("async", function () {
 
             $await(jumpAnimate());
         }));
+
+		function scaleCanvas() {
+    var designWidth = 1100;
+    var designHeight = 680;
+
+    var scale = Math.min(
+        window.innerWidth / designWidth,
+        window.innerHeight / designHeight
+    );
+
+    document.getElementById("canvas").style.transform =
+        "scale(" + scale + ")";
+}
+
+scaleCanvas();
+window.onresize = scaleCanvas;
 
         runAsync().start();
     })();
