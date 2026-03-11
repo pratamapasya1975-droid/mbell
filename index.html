@@ -26,7 +26,7 @@
 <div id="main">
 
     <audio id="bgm" autoplay loop>
-    <source src="./file/kasih_putih.mp3" type="audio/mp3">
+    <source src="https://files.catbox.moe/jui0tu.mp3" type="audio/mpeg">
 </audio>
     
 <div id="error">
@@ -212,6 +212,13 @@ var runAsync = eval(Jscex.compile("async", function () {
 runAsync().start();
 
 })();
+<script>
+document.addEventListener("click", function () {
+    const audio = document.getElementById("bgm");
+    audio.play();
+}, { once:true });
+const bgm = document.getElementById("bgm");
+bgm.volume = 0.35;
 </script>
 
 </body>
