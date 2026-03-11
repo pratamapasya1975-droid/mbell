@@ -36,3 +36,14 @@ canvas {
     height: 100vh;
     display: block;
 }
+
+#code {
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    #code {
+        font-size: 12px;
+        padding: 10px;
+    }
+}
