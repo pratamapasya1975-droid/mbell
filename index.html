@@ -195,21 +195,21 @@ var textAnimate = eval(Jscex.compile("async", function () {
             $await(jumpAnimate());
         }));
 
-		function scaleCanvas() {
-    var designWidth = 1100;
-    var designHeight = 680;
+function fitScreen() {
+    const designW = 1100;
+    const designH = 680;
 
-    var scale = Math.min(
-        window.innerWidth / designWidth,
-        window.innerHeight / designHeight
-    );
+    const scaleX = window.innerWidth / designW;
+    const scaleY = window.innerHeight / designH;
 
-    document.getElementById("canvas").style.transform =
-        "scale(" + scale + ")";
+    const scale = Math.min(scaleX, scaleY);
+
+    document.getElementById("wrap").style.transform =
+        "translate(-50%, -50%) scale(" + scale + ")";
 }
 
-scaleCanvas();
-window.onresize = scaleCanvas;
+fitScreen();
+window.addEventListener("resize", fitScreen);
 
         runAsync().start();
     })();
